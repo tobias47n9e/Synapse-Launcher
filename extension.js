@@ -42,48 +42,32 @@ const extensionObject = new Lang.Class({
     Extends: PanelMenu.Button,
 
     _init: function() {
+        let icon = new St.Icon({
+            icon_name: 'emblem-default-symbolic',
+            style_class: 'system-status-icon'
+        });
+        let label = new St.Label({ text: "" });
+        this.parent(0.0, label.text);
+        this.actor.add_actor(icon);
 
+        this.actor.connect(
+            'button-press-event',
+            Lang.bind(this, this.onButtonPress)
+        );
+    },
 
+    /**
+    * Runs when the button in the title bar is pressed.
+    */
+    onButtonPress: function () {
+        let currentAction = "synapse.desktop";
 
-
-		let icon = new St.Icon({ icon_name: 'emblem-default-symbolic',
-					 style_class: 'system-status-icon' });
-		let label = new St.Label({ text: "" });
-		this.parent(0.0, label.text);
-		this.actor.add_actor(icon);
-
-
-
-
-
-
-
-    this.actor.connect('button-press-event', Lang.bind(this,
-
-
-
-      function onButtonPress() {
-        var currentAction = "synapse.desktop";
-      /* Save context variable for binding */
-          return function() {
         let def = Shell.AppSystem.get_default();
         let app = def.lookup_app(currentAction);
-        app.onButtonPress();
 
-          }
-
-      }
-
-       ));
-
-
-
-
-
-
-
-
-
+        global.log("app is: " + app);
+        //app.onButtonPress();
+    },
 
       /*    function synapse(){
 
@@ -103,7 +87,7 @@ const extensionObject = new Lang.Class({
 
 
 
-		let item = null;
+		//let item = null;
 
 
 
@@ -139,10 +123,6 @@ const extensionObject = new Lang.Class({
 
 
 		// Remove or show "status/user" menu items
-
-
-
-	},
 
 	destroy: function() {
 		this.parent();
