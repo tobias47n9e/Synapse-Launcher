@@ -33,6 +33,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
 
+let extension;
 let settingsJSON,settings,settingsID;
 
 
