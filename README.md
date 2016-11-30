@@ -1,2 +1,4 @@
-# Synapse-Launcher
-A launcher for synapse. Similar to spotlight for OSX. 
+gnome-system-menu
+=================
+
+Gnome-Shell extension that creates a system menu on top panel
